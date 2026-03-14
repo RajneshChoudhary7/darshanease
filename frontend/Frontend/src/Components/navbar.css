@@ -1,227 +1,567 @@
-.navabar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #fff;
-    /* Add any other styles you need for your navbar */
-  }
-  
-  /* Add padding to the top of the content area */
-  .content {
-    padding-top: 150px; /* Adjust the value based on the height of your navbar */
-  }
-  
-  /* Add any other styles for your other elements as needed */
-  
-  
+/* ================= NAVBAR MAIN ================= */
+
+.navabar{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+/* content spacing */
+
+.content{
+  padding-top:150px;
+}
+
+
+/* ================= TOP HEADER ================= */
+
 .class1{
-    background-color: rgb(255, 68, 0);
-    display: flex;
-    justify-content: space-between;
-    
+  background: linear-gradient(135deg,#ff5f00,#ff8c00);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:5px 0;
 }
+
+.class1 h4{
+  color:white;
+  font-weight:600;
+  margin-left:10px;
+}
+
+
+/* left image */
+
 .img1{
-    padding-left: 250px;
-    padding-top: 15px;
-    padding-bottom: 8px;
-    height: 100px;
-    width: 400px;
+  padding-left:150px;
+  padding-top:10px;
+  padding-bottom:10px;
+  height:90px;
+  width:320px;
+  object-fit:cover;
 }
+
+/* right image */
+
 .img2{
-    padding-right: 250px;
-    padding-top: 15px;
-    padding-bottom: 8px;
-    height: 100px;
-    width: 400px;
-}
-#p6{
-  background: linear-gradient(to bottom, #df1b1b 0%, #b10a1db9 100%);
-  background-color: black;
-  border: none;
-}
-.nav1 {
-    background: linear-gradient(to bottom, #df1b1b 0%, #b10a1db9 100%);
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    font-size: 21px;
-    height: 35px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-bottom: 4px;
-    /* position: fixed; */
-    
-}
-
-.nav1 p {
-    position: relative;
-    margin: 0;
-    cursor: pointer;
-    color: #b8b6b6;
-}
-
-  .nav1 p:hover  {
-    color: white; /* Change the text color on hover */
-  }
-
-  
-.nav1 p:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -25px;
-    transform: translateY(-50%);
-    height: 100%; /* Adjust the height of the vertical line as needed */
-    width: 3px; /* Adjust the width of the vertical line as needed */
-    background-color: gold;
-}
-
-.p1 {
-    padding-left: 450px; /* Adjust the padding as needed */
-}
-
-.p6 {
-    padding-right: 400px; /* Adjust the padding as needed */
-}
-
-/* Style for the dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Style for the dropdown button */
-.dropbtn {
-  /* background-color: #4CAF50; */
-  color: rgb(198, 193, 193);
-  border: none;
-  cursor: pointer;
-}
-
-/* Style for the dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Style for the dropdown links */
-.dropdown-content a {
-  color: black;
-  padding: 0 12px ;
-  text-decoration: none;
-  display: block;
+  padding-right:150px;
+  padding-top:10px;
+  padding-bottom:10px;
+  height:90px;
+  width:320px;
+  object-fit:cover;
 }
 
 
-/* Show the dropdown content when the dropdown button is clicked */
-.dropdown:hover .dropdown-content {
-  display: block;
+/* ================= NAV MENU ================= */
+
+.nav1{
+  background:linear-gradient(135deg,#c31432,#240b36);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  color:white;
+  font-size:18px;
+  height:45px;
+  font-family:system-ui;
+}
+
+
+/* nav items */
+
+.nav1 p{
+  position:relative;
+  margin:0;
+  cursor:pointer;
+  color:#cfcfcf;
+  transition:0.3s;
+}
+
+/* hover animation */
+
+.nav1 p:hover{
+  color:white;
+  transform:translateY(-2px);
+}
+
+
+/* vertical divider */
+
+.nav1 p:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  right:-20px;
+  top:50%;
+  transform:translateY(-50%);
+  height:20px;
+  width:2px;
+  background:gold;
+}
+
+
+/* padding fixes */
+
+.p1{
+  padding-left:120px;
+}
+
+.p6{
+  padding-right:120px;
 }
 
 
 
-  
-/* Marquee styles with animated color */
-.marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-    background: linear-gradient(45deg, #ff8800, #e80d5d);
-    font-size: 22px;
-    height: 30px;
-    position: relative;
-  }
-  
-  .marquee-text {
-    display: inline-block;
-    animation: marqueeAnimation 20s linear infinite, colorAnimation 8s linear infinite alternate;
-    
-  }
-  
-  @keyframes marqueeAnimation {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
-  @keyframes colorAnimation {
-    25% {
-      color: blue; /* Red */
-    }
-    50% {
-      color: rgb(0, 255, 0); /* Green */
-    }
-    100% {
-      color: rgb(0, 255, 213); /* Blue */
-    }
-  }
-  .class{
-    background-image:url("../assets/Background.jpg")
-  }
-  
+/* ================= DROPDOWN ================= */
 
-  @media (max-width: 768px) {
-    .class1 {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .img1,
-    .img2 {
-      padding: 15px;
-      width: 100%;
-      text-align: center;
-    }
-  
-    .nav1 {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .nav1 p {
-      margin-bottom: 10px;
-    }
-  
-    .p1,
-    .p4 {
-      padding: 0;
-    }
-  }
+.dropdown{
+  position:relative;
+}
+
+.dropbtn{
+  background:none;
+  border:none;
+  font-size:18px;
+  color:#cfcfcf;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.dropbtn:hover{
+  color:rgb(15, 2, 2);
+}
 
 
-  /* services.css */
+/* dropdown menu */
 
-.services-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:35px;
+  right:0;
+  background:white;
+  min-width:150px;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* dropdown links */
+
+.dropdown-content a{
+  display:block;
+  padding:10px 15px;
+  text-decoration:none;
+  color:#333;
+  transition:0.2s;
+}
+
+.dropdown-content a:hover{
+  background:#f5f5f5;
+}
+
+/* show dropdown */
+
+.dropdown:hover .dropdown-content{
+  display:block;
+}
+
+
+/* ================= MARQUEE ================= */
+
+.marquee-container{
+  overflow:hidden;
+  white-space:nowrap;
+  background:linear-gradient(45deg,#ff8800,#e80d5d);
+  font-size:20px;
+  height:30px;
+  display:flex;
+  align-items:center;
+}
+
+.marquee-text{
+  display:inline-block;
+  animation:marqueeAnimation 20s linear infinite,
+  colorAnimation 8s linear infinite alternate;
+}
+
+@keyframes marqueeAnimation{
+  0%{
+    transform:translateX(100%);
   }
-  
-  .services-heading {
-    text-align: center;
-    color: #333;
+  100%{
+    transform:translateX(-100%);
   }
-  
-  .service {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes colorAnimation{
+  25%{color:blue;}
+  50%{color:lime;}
+  100%{color:aqua;}
+}
+
+
+/* ================= BACKGROUND ================= */
+
+.class{
+  background-image:url("../assets/Background.jpg");
+  background-size:cover;
+  background-position:center;
+}
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width:768px){
+
+  .class1{
+    flex-direction:column;
   }
-  
-  .service h2 {
-    color: #007bff;
+
+  .img1,
+  .img2{
+    padding:10px;
+    width:90%;
+    height:auto;
   }
-  
-  .service p {
-    color: #333;
+
+  .nav1{
+    flex-wrap:wrap;
+    height:auto;
+    padding:10px;
+    gap:20px;
   }
-  
+
+  .p1,
+  .p6{
+    padding:0;
+  }
+
+}
+
+/* ================= SERVICES SECTION ================= */
+
+.services-container{
+  padding:60px 40px;
+  background:#f8f9fa;
+  text-align:center;
+}
+
+.services-heading{
+  font-size:38px;
+  margin-bottom:40px;
+  color:#333;
+  font-weight:600;
+}
+
+/* grid layout */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+/* service card */
+
+.service-card{
+  background:white;
+  padding:30px 25px;
+  border-radius:12px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+  transition:0.3s;
+  cursor:pointer;
+}
+
+/* hover animation */
+
+.service-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* icon */
+
+.service-icon{
+  font-size:40px;
+  margin-bottom:15px;
+}
+
+/* title */
+
+.service-card h2{
+  font-size:22px;
+  margin-bottom:10px;
+  color:#ff6a00;
+}
+
+/* text */
+
+.service-card p{
+  font-size:15px;
+  color:#555;
+  line-height:1.6;
+}
+
+/* ================= TEMPLE SECTION ================= */
+
+.temples-section{
+  padding:60px 40px;
+  background:#f5f5f5;
+  text-align:center;
+}
+
+.temple-heading{
+  font-size:36px;
+  margin-bottom:40px;
+  color:#333;
+}
+
+/* grid */
+
+.temple-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+/* temple card */
+
+.temple-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.temple-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  transition:transform 0.4s ease;
+}
+
+/* image zoom */
+
+.temple-card:hover img{
+  transform:scale(1.1);
+}
+
+/* overlay */
+
+.temple-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  opacity:0;
+  transition:0.4s;
+}
+
+.temple-card:hover .temple-overlay{
+  opacity:1;
+}
+
+.temple-overlay h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.temple-overlay p{
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+/* button */
+
+.darshan-btn{
+  background:#ff7b00;
+  padding:8px 16px;
+  border-radius:6px;
+  font-size:14px;
+}
+
+/* remove link style */
+
+.temple-link{
+  text-decoration:none;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  background:#111;
+  padding:50px 20px;
+  text-align:center;
+  color:white;
+}
+
+.footer-container{
+  max-width:900px;
+  margin:auto;
+}
+
+.footer-title{
+  font-size:28px;
+  margin-bottom:10px;
+  color:#ff7b00;
+}
+
+.footer-desc{
+  font-size:16px;
+  color:#ccc;
+  margin-bottom:25px;
+}
+
+/* contact button */
+
+.contact-btn{
+  background:#ff7b00;
+  border:none;
+  padding:10px 22px;
+  border-radius:6px;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+  margin-bottom:20px;
+}
+
+.contact-btn:hover{
+  background:#e66a00;
+}
+
+/* phone */
+
+.footer-phone{
+  font-size:15px;
+  margin-bottom:10px;
+  color:#ddd;
+}
+
+/* copyright */
+
+.footer-copy{
+  font-size:14px;
+  color:#aaa;
+}
+
+/* ================= BANNER ================= */
+
+.banner-section{
+  padding-top:10px;
+}
+
+/* slider container */
+
+.banner-slider{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* image */
+
+.banner-image{
+  width:100%;
+  height:380px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+/* slick dots */
+
+.slick-dots li button:before{
+  color:#ff7b00;
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+  .banner-image{
+    height:220px;
+  }
+
+}
+
+
+/* ================= ABOUT SECTION ================= */
+
+.about-section{
+  padding:70px 20px;
+  background:#fafafa;
+}
+
+.about-container{
+  max-width:900px;
+  margin:auto;
+}
+
+.about-title{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:10px;
+  color:#333;
+}
+
+.about-subtitle{
+  text-align:center;
+  font-size:18px;
+  color:#666;
+  margin-bottom:35px;
+}
+
+/* list */
+
+.about-list{
+  list-style:circle;
+  padding-left:20px;
+  font-size:16px;
+  line-height:1.8;
+  color:#444;
+}
+
+/* list spacing */
+
+.about-list li{
+  margin-bottom:12px;
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+  .about-title{
+    font-size:26px;
+  }
+
+  .about-subtitle{
+    font-size:16px;
+  }
+
+}
+
+/* ================= HOME PAGE ================= */
+
+.home-page{
+  background-image:url("../assets/Background.jpg");
+  background-size:cover;
+  background-position:center;
+}
+
+/* main layout */
+
+.main-content{
+  padding-top:140px;
+}

@@ -1,21 +1,31 @@
-import React from 'react'
+import React from "react";
+import "./navbar.css";
 
-const Footer =()=>{
-    return(
-        <div id='contact'>
-        <footer style={{ backgroundColor: 'black', padding: '20px', textAlign: 'center' }}>
-        <div style={{display:"flex",justifyContent:"center"}}>
-        <button id='bt' className='item-center' style={{height:"50px",color:'gray'}} >Contact us</button>
-        </div>
-        <p style={{color:"white"}}>
-        "Embark on a Spiritual Journey, One Darshan at a Time – Seamless Temple Darshan Ticket Booking at Your Fingertips!"</p>
-            <p  style={{ color: 'white', marginBottom: '0' }}>Call At: 127-865-586-67</p>
-      <p style={{ color: 'white', marginBottom: '0' }}>
-      Copyright  &copy; {new Date().getFullYear()} By DarshanEase. <br/>All Rights Reserved.
-      </p>
+const Footer = () => {
+  return (
+    <footer className="footer" id="contact">
+
+      <div className="footer-container">
+
+        <h2 className="footer-title">DarshanEase</h2>
+
+        <p className="footer-desc">
+          Embark on a Spiritual Journey, One Darshan at a Time – Seamless
+          Temple Darshan Ticket Booking at Your Fingertips.
+        </p>
+
+        <button className="contact-btn">Contact Us</button>
+
+        <p className="footer-phone">Call At: 127-865-586-67</p>
+
+        <p className="footer-copy">
+          © {new Date().getFullYear()} DarshanEase. All Rights Reserved.
+        </p>
+
+      </div>
+
     </footer>
-    </div>
-    )
-}
+  );
+};
 
-export default Footer
+export default Footer;

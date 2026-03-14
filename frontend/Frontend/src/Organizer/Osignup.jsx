@@ -1,129 +1,133 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { FaBackspace, FaBezierCurve, FaLongArrowAltLeft, FaLongArrowAltRight, FaSignOutAlt, FaStepBackward } from 'react-icons/fa';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Osignup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let payload = { name, email, password };
 
-    axios
-      .post("http://localhost:7000/organizer/osignup", payload)
-      .then((result) =>{
-        alert('Account created')
-        console.log(result)
-        navigate('/ologin')
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Failed to create an account");
-      });
-  };
+    if (!name || !email || !password) {
+      alert("Please fill all fields");
+      return;
+    }
 
-  let formHandle1 = (e) => {
-    e.preventDefault();
-    navigate("/ologin");
+    try {
+      setLoading(true);
+
+      const payload = { name, email, password };
+
+      const result = await axios.post(
+        "http://localhost:7000/organizer/osignup",
+        payload
+      );
+
+      console.log(result);
+      alert("Account Created Successfully");
+
+      navigate("/ologin");
+
+    } catch (error) {
+      console.log(error);
+      alert("Signup Failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div>
-    <div className="flex items-center justify-center min-h-screen bg-white"> 
-   
-    <h2 style={{ position: "relative", bottom: "300px", right: "300px", transform: "scaleX(-1.5)",}} > <Link to="/" className='text-gray-500 hover:text-gray-900'><FaSignOutAlt/></Link></h2>
+    <div className="flex items-center justify-center min-h-screen bg-white">
 
-      <div className="relative  bg-green-700 p-8 rounded-md shadow-md overflow-hidden" style={{display:"flex",height:"440px",width:"620px"}}>
-      <div>
-      <img src='https://i.pinimg.com/originals/9a/a6/12/9aa612d9c56c38e14b009f2184b67039.jpg'  style={{marginRight:"35px",height:"380px",width:"270px"}} />
-      </div>
-        <div className="relative z-10" style={{width:"270px"}}>  
-          <div>
-            <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-4"  >
-              Signup
-            </h2>
-            
-          </div>
+      {/* Back Button */}
+      <Link to="/" className="absolute top-8 left-10 text-gray-600 hover:text-black text-2xl">
+        <FaSignOutAlt />
+      </Link>
 
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-200">
-              Name
-            </label>
-            <input
-              name="name"
-              type="name"
-              autoComplete="email"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Name"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-200">
-              Email address
-            </label>
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Email address"
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-200">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Password"
-            />
-          </div>
+      <div className="flex bg-green-700 p-8 rounded-lg shadow-lg w-[650px] h-[440px]">
 
-          <div>
-            <button
-              type="submit"
-              className="bg-red-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-indigo-300 transition-all duration-300"
-            >
-              Signup
-            </button>
-           
-            <p className="text-sm text-gray-300 pt-2" >
-            Already have an account{' '}
-            <button
-              onClick={formHandle1}
-              className="text-red-500 hover:underline focus:outline-none focus:ring focus:border-indigo-300 transition-all duration-300"
-            >
-              Login
-            </button>
-          </p>
-          </div>
-
-         
-        </form>
+        {/* Image Section */}
+        <div className="mr-8">
+          <img
+            src="https://i.pinimg.com/originals/9a/a6/12/9aa612d9c56c38e14b009f2184b67039.jpg"
+            alt="Temple"
+            className="w-[270px] h-[380px] object-cover rounded-md"
+          />
         </div>
 
-        {/* <div className="absolute h-full w-full bg-red-500 transform -skew-y-6 origin-bottom-right"></div> */}
-       
+        {/* Form Section */}
+        <div className="w-[270px]">
+
+          <h2 className="text-3xl font-bold text-center text-white mb-6">
+            Organizer Signup
+          </h2>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+
+            <div>
+              <label className="text-sm text-gray-200">Name</label>
+              <input
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full mt-1 p-2 rounded border outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm text-gray-200">Email</label>
+              <input
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mt-1 p-2 rounded border outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm text-gray-200">Password</label>
+              <input
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full mt-1 p-2 rounded border outline-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-red-400 hover:bg-red-600 text-white py-2 rounded font-semibold transition"
+            >
+              {loading ? "Creating..." : "Signup"}
+            </button>
+
+            <p className="text-sm text-gray-200 text-center">
+              Already have an account?{" "}
+              <button
+                type="button"
+                onClick={() => navigate("/ologin")}
+                className="text-red-300 hover:underline"
+              >
+                Login
+              </button>
+            </p>
+
+          </form>
+        </div>
+
       </div>
     </div>
-   </div>
   );
 };
 

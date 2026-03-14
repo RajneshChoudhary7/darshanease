@@ -4,109 +4,109 @@ import '../Components/navbar.css'
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
+import React, { useState } from "react";
+import Card from "react-bootstrap/Card";
 
 const TempleCard = ({ imageSrc, title, description }) => {
 
-    const [isHovered, setIsHovered] = useState(false);
-  
-    const handleMouseOver = () => {
-      setIsHovered(true);
-    };
-  
-    const handleMouseOut = () => {
-      setIsHovered(false);
-    };
-  
-    return (
-      <Card  style={{width:"25rem"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        {isHovered ? (
-          <Card.Body>
-            <Card.Text>
-              <strong style={{ color: 'orange' }}>Advance Darshan</strong> <br /> <br />
-              <strong>{title}</strong> <br /> <br />
-              <p>{description}</p>
-            </Card.Text>
-          </Card.Body>
-        ) : (
-          <div>
-           
-            
-            <Card.Img variant="top" src={imageSrc} alt={title}  style={{width:"500px",height:"200px"}}  />
-           
-          
-          </div>
-        )}
-      </Card>
-    );
-  };
-  
-
-
-
-
-const Temples = () => {
-    const settings = {
-        fade: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,        // Enable autoplay
-        autoplaySpeed: 2000, 
-        arrows:false
-      };
+  const [hover, setHover] = useState(false);
 
   return (
-  
-    <div className='content' style={{backgroundColor:"whitesmoke",paddingBottom:"50px",paddingTop:"20px"}} id='temples'>   
-  
 
-      <h1 className='text-center'>Temples</h1>
-      <Link  to='/utemples' style={{textDecoration:"none"}}>
-      <div style={{display:"flex", justifyContent:"space-around"}}>
-      <TempleCard 
-        imageSrc="https://d3k1i85mml78tf.cloudfront.net/Blogs/1677258515580_post_image_1.jpg" 
-        title="Shri Thakur Banke Bihari Ji Mandir"
-        description="to Register Shri Thakur Banke Bihari Ji Mandir Online Darshan Booking"
-        linkTo="/ulogin"
-      />
-      <TempleCard
-        imageSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Shiv_khori_2.jpg/1200px-Shiv_khori_2.jpg"
-        title="Shiv Khori Mandir"
-        description="Click here to Register Shiv Khori Mandir Online Darshan Booking"
-       
-      />
-      <TempleCard
-        imageSrc="https://upload.wikimedia.org/wikipedia/commons/4/4e/Tirumala_090615.jpg"
-        title="Tirupati Tirumala Temple"
-        description="Click here to Register Tirupati Tirumala Temple Online Darshan Booking"
-      />  </div>
-      <br/> 
-      <div style={{display:"flex", justifyContent:"space-around"}}>
-      <TempleCard 
-        imageSrc="https://imageio.forbes.com/blogs-images/jimdobson/files/2016/05/Sree_Padmanabhaswamy_Temple.jpg?height=459&width=711&fit=bounds" 
-        title="Padmanabaswamy Temple"
-        description="Click here to Register Padmanabaswamy Temple Online Darshan Booking"
-      />
-      <TempleCard
-        imageSrc="https://upload.wikimedia.org/wikipedia/commons/e/e4/Sai_baba_samadhi_mandir_.jpg"
-        title="Shirdi Sai Baba Mandir"
-        description="Click here to Register Shirdi Sai Baba Mandir Online Darshan Booking"
-      />
-      <TempleCard
-        imageSrc="https://upload.wikimedia.org/wikipedia/commons/9/94/The_Golden_Temple_of_Amrithsar_7.jpg"
-        title="Golden Temple"
-        description="Click here to Register Golden Temple Online Darshan Booking"
-      />   
+    <Card
+      style={{ width: "20rem", cursor: "pointer" }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="shadow"
+    >
+
+      {hover ? (
+        <Card.Body>
+
+          <Card.Title style={{ color: "orange" }}>
+            Advance Darshan
+          </Card.Title>
+
+          <Card.Subtitle>{title}</Card.Subtitle>
+
+          <Card.Text>{description}</Card.Text>
+
+        </Card.Body>
+
+      ) : (
+
+        <Card.Img
+          variant="top"
+          src={imageSrc}
+          style={{ height: "200px", objectFit: "cover" }}
+        />
+
+      )}
+
+    </Card>
+  );
+};
+
+export default TempleCard;
+import React from "react";
+import TempleCard from "./TempleCard";
+import { Link } from "react-router-dom";
+
+const temples = [
+  {
+    image:
+      "https://d3k1i85mml78tf.cloudfront.net/Blogs/1677258515580_post_image_1.jpg",
+    title: "Shri Thakur Banke Bihari Ji Mandir",
+    description: "Online Darshan Booking",
+  },
+  {
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Shiv_khori_2.jpg/1200px-Shiv_khori_2.jpg",
+    title: "Shiv Khori Mandir",
+    description: "Online Darshan Booking",
+  },
+  {
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/4/4e/Tirumala_090615.jpg",
+    title: "Tirupati Tirumala Temple",
+    description: "Online Darshan Booking",
+  },
+];
+
+const Temples = () => {
+  return (
+    <div
+      style={{
+        backgroundColor: "whitesmoke",
+        padding: "50px 0",
+      }}
+    >
+      <h1 className="text-center mb-5">Temples</h1>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "30px",
+          flexWrap: "wrap",
+        }}
+      >
+        {temples.map((temple, index) => (
+          <Link
+            to="/utemples"
+            key={index}
+            style={{ textDecoration: "none" }}
+          >
+            <TempleCard
+              imageSrc={temple.image}
+              title={temple.title}
+              description={temple.description}
+            />
+          </Link>
+        ))}
+      </div>
     </div>
-    </Link>
-    </div>
-    
-    
-    
-  )
-}
+  );
+};
 
-export default Temples
-
-
+export default Temples;

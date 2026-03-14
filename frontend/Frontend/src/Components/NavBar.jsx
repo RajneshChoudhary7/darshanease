@@ -1,100 +1,167 @@
-import React, { useState } from 'react';
-import './navbar.css';
-import logo from '../assets/logo.png';
-import { Link, animateScroll as scroll } from 'react-scroll';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import logo from "../assets/logo.png";
+import { Link, animateScroll as scroll } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 
 const NavBar = () => {
+
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
+  useEffect(() => {
+
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+
+  }, []);
+
   return (
-    <div className='navabar'>
-      <div className='class1'>
-        <img
-          className='img1'
-          src='https://i.pinimg.com/236x/47/8d/91/478d91cfdd23742558b17ee10fdd1415.jpg'
-          alt='background'
-        />
-        <div>
-        <Link to='home' smooth={true} duration={500} onClick={scrollToTop}  offset={-80}>
-        <img
-            src={logo}
-            style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '50%',
-              marginLeft: '35px',
-              marginTop: '8px',
-              cursor:"pointer"
-            }}
-            alt='logo'
-          />
-        </Link>
-         
-          <h4>DarshanEase</h4>
+    <header className="fixed top-0 w-full z-50 bg-white shadow-md">
+
+      <div className="flex justify-between items-center px-12 py-3">
+
+        {/* LEFT SIDE */}
+
+        <div className="flex items-center gap-2">
+
+          <Link
+            to="home"
+            smooth={true}
+            duration={500}
+            offset={-80}
+            onClick={scrollToTop}
+          >
+            <img
+              src={logo}
+              alt="logo"
+              className="h-11 cursor-pointer"
+            />
+          </Link>
+
+          <h3 className="text-xl font-semibold text-orange-500">
+            DarshanEase
+          </h3>
+
         </div>
-        <img
-          className='img2'
-          src='https://i.pinimg.com/236x/60/ea/85/60ea85960135aadd5ba6e97220241fb5.jpg'
-          alt='background'
-        />
-      </div>
-      <div>
-        <nav className='nav1'>
-        <p className='p1'>
-        <Link to='home' smooth={true} duration={500} onClick={scrollToTop}  offset={-80}>
-              Home
-        </Link>
-       </p>
-<p className='p2'>
-<Link to='temples' smooth={true} duration={500}  offset={-120}>
-  Temples
-</Link>
-</p>
-<p className='p4'>
-<Link to='about' smooth={true} duration={500} offset={-140}>
-  About
-</Link>
-</p>
-<p className='p3'>
-<Link to='services' smooth={true} duration={500} offset={-140}>
-  Services
-</Link>
-</p>
 
+        {/* MENU */}
 
-<p className='p5'>
-<Link to='contact' smooth={true} duration={500}  offset={-100}>
-  Contact us
-</Link>
-</p>
+        <nav className="flex items-center gap-8 text-gray-700 font-medium whitespace-nowrap">
 
-<p className='p6'>
-<div className='dropdown'>
-            <button className='dropbtn' onClick={toggleDropdown}>
+          <Link
+            className="cursor-pointer hover:text-orange-500 transition"
+            to="home"
+            smooth
+            duration={500}
+            offset={-80}
+          >
+            Home
+          </Link>
+
+          <Link
+            className="cursor-pointer hover:text-orange-500 transition"
+            to="temples"
+            smooth
+            duration={500}
+            offset={-120}
+          >
+            Temples
+          </Link>
+
+          <Link
+            className="cursor-pointer hover:text-orange-500 transition"
+            to="about"
+            smooth
+            duration={500}
+            offset={-120}
+          >
+            About
+          </Link>
+
+          <Link
+            className="cursor-pointer hover:text-orange-500 transition"
+            to="services"
+            smooth
+            duration={500}
+            offset={-120}
+          >
+            Services
+          </Link>
+
+          <Link
+            className="cursor-pointer hover:text-orange-500 transition"
+            to="contact"
+            smooth
+            duration={500}
+            offset={-100}
+          >
+            Contact
+          </Link>
+
+          {/* DROPDOWN */}
+
+          <div className="relative" ref={dropdownRef}>
+
+            <button
+              onClick={toggleDropdown}
+              className="bg-orange-500 text-dark px-4 py-2 rounded-md hover:bg-orange-600 transition"
+            >
               Login
             </button>
+
             {isDropdownOpen && (
-              <div className='dropdown-content'>
-                <RouterLink to='/ulogin'>User</RouterLink>
-                <RouterLink to='/ologin'>Organizer</RouterLink>
-                <RouterLink to='/alogin'>Admin</RouterLink>
+
+              <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg flex flex-col">
+
+                <RouterLink
+                  to="/ulogin"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  User Login
+                </RouterLink>
+
+                <RouterLink
+                  to="/ologin"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  Organizer Login
+                </RouterLink>
+
+                <RouterLink
+                  to="/alogin"
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  Admin Login
+                </RouterLink>
+
               </div>
+
             )}
+
           </div>
-</p>
 
         </nav>
+
       </div>
-    </div>
+
+    </header>
   );
 };
 

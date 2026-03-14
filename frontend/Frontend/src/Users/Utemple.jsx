@@ -121,5 +121,4 @@ const Utemple = () => {
         </div>
     );
 };
-
 export default Utemple;

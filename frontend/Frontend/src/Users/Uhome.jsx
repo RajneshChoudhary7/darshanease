@@ -1,25 +1,59 @@
-import React from 'react'
-import Unavbar from './Unavbar'
-import Banner from '../Components/Banner'
-import Services from '../Components/Services'
-import Footer from '../Components/Footer'
-import { Link } from 'react-router-dom'
-import Temples from './Temples'
-import '../Components/navbar.css'
+import React from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
-const Uhome = () => {
+const Unavbar = () => {
+
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   return (
-    <div className='class' >
-        <Unavbar/>
-        <div>
-        <Banner/>
-        <Temples/>
-        <Services/>
-        <Footer/>
-        </div>
- 
-    </div>
-  )
-}
+    <Navbar expand="lg" style={{ backgroundColor: "teal" }} variant="dark">
+      <Container>
 
-export default Uhome
+        <Navbar.Brand as={Link} to="/uhome">
+          Darshan-Ease
+        </Navbar.Brand>
+
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+
+          <Nav className="ms-auto">
+
+            <Nav.Link as={Link} to="/uhome">
+              Home
+            </Nav.Link>
+
+            <Nav.Link as={Link} to="/utemples">
+              Temples
+            </Nav.Link>
+
+            <Nav.Link as={Link} to="/mybookings">
+              My Bookings
+            </Nav.Link>
+
+            <Nav.Link onClick={logout}>
+              Logout
+            </Nav.Link>
+
+            {user && (
+              <Nav.Link disabled>
+                👤 {user.name}
+              </Nav.Link>
+            )}
+
+          </Nav>
+
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
+
+export default Unavbar;

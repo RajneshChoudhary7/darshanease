@@ -1,25 +1,35 @@
-import React from 'react'
-import './navbar.css'
-import Banner from './Banner'
-import Temples from './Temples'
-import About from './About'
-import Footer from './Footer'
-import NavBar from './Navbar'
-import Services from './Services'
+import React from "react";
+import "./navbar.css";
+
+import NavBar from "./Navbar";
+import Banner from "./Banner";
+import Temples from "./Temples";
+import About from "./About";
+import Services from "./Services";
+import Footer from "./Footer";
 
 const Home = () => {
   return (
-    <div className='class' id='home'>
-        <NavBar/>
-        <div className='content'>
-         <Banner/>   
-        <Temples/>
-        <About/>
-        <Services/>
-        <Footer/>
-    </div>
-    </div>
-  )
-}
+    <div className="home-page" id="home">
 
-export default Home
+      <NavBar />
+
+      <main className="main-content">
+
+        <Banner />
+
+        <Temples />
+
+        <About />
+
+        <Services />
+
+      </main>
+
+      <Footer />
+
+    </div>
+  );
+};
+
+export default Home;
